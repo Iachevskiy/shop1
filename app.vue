@@ -1,5 +1,11 @@
 <template>
   <div>
-    <NuxtWelcome />
+    new shop
+    <Testw/>
+    <BaseButton/>
   </div>
 </template>
+<script>
+export default {
+}
+</script>

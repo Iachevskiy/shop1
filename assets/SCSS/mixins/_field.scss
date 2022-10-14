@@ -1,0 +1,4 @@
+@mixin field-control-focus() {
+  border-color: $color-primary-blue-light;
+  box-shadow: 0 0 0 3px rgba(#408cff, 0.2);
+}
