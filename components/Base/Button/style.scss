@@ -1,0 +1,15 @@
+.base-button {
+
+  &__btn {
+
+    &_full-width {
+      width: 100%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+}

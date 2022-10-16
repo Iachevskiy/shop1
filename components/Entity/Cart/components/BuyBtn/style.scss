@@ -1,0 +1,16 @@
+.entity-cart-buy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  &__wrapper {
+    .n-button .n-button__content {
+      width: 100%;
+    }
+  }
+
+  &__total {
+    @include text-20-28-700;
+  }
+}
