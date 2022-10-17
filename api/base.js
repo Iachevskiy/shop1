@@ -103,7 +103,7 @@ export const db = {
         },
         {
             id: 5,
-            title: "little-small Sony 2",
+            title: "sony bravia",
             img: "",
             url: "little-small-sony-2",
             parentId: 3,
