@@ -1,14 +1,14 @@
 <template>
-<div class="base-button">
+<div
+    class="base-button"
+>
   <n-button
       class="base-button__btn"
       :class="{'base-button__btn_full-width': fullWidth}"
       :loading="isLoading"
-      :strong="isStrong"
+      :strong="!textLite"
       :type="type"
       :size="size"
-      :secondary="isSecondary"
-      :text="isText"
   >
     <slot/>
     <div class="base-button__content">
@@ -17,7 +17,6 @@
       </template>
 
       {{title}}
-
       <template v-if="iconRight">
         <BaseIcon :name="iconRight"/>
       </template>
@@ -30,7 +29,7 @@
 <script setup>
 import { NButton } from 'naive-ui'
 
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     default: '',
@@ -41,40 +40,26 @@ defineProps({
     default: false,
   },
 
-  isText: {
-    type: Boolean,
-    default: false,
-  },
-
-  isSecondary: {
-    type: Boolean,
-    default: false,
-  },
-
-  type: {
+  theme: {
     type: String,
-    default: 'primary',
+    default: 'default',
     validator(value) {
       return [
         'primary',
-        'tertiary',
-        'info',
-        'success',
-        'warning',
-        'error',
+        'secondary',
         'default'
       ].includes(value)
     }
   },
 
-  isStrong: {
+  textLite: {
     type: Boolean,
     default: false,
   },
 
   size: {
     type: String,
-    default: 'medium',
+    default: 'large',
     validator(value) {
       return [
         'tiny',
@@ -102,6 +87,18 @@ defineProps({
 
 })
 
+const type = computed(() => {
+  if(props.theme === 'primary') {
+    return 'primary'
+  }
+  if(props.theme === 'secondary') {
+    return 'info'
+  }
+  if(props.theme === 'default') {
+    return 'warning'
+  }
+  return null
+})
 </script>
 
 <style lang="scss" src="./style.scss" />

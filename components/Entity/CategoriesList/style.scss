@@ -4,6 +4,13 @@
     @include text-20-28-500;
     padding: 14px 20px;
     border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    &-back {
+      cursor: pointer;
+    }
   }
 
   &__item {
@@ -11,10 +18,16 @@
     padding: 14px 20px;
     border-radius: 16px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      background: #FFFFFF80;
+    }
 
     &_active {
       background: white;
-      cursor: auto;
     }
   }
 }

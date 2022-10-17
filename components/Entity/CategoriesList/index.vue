@@ -4,23 +4,47 @@
     <!-- btn back-->
     <BaseButton
         title="Все рестораны"
-        isStrong
-        isSecondary
+        theme="default"
         size="large"
         iconLeft="ArrowBack"
-        type="default"
     />
 
-    <div class="entity-categories-list__title">Меню</div>
+    <div class="entity-categories-list__title">
+      <BaseIcon
+          v-if="categoryActive.parentId !== null"
+          name="ChevronBack"
+          @click="handleSelectCategory(0)"
+          class="entity-categories-list__title-back"
+      />
+      {{ categoryActive.title }}
+    </div>
 
-    <div class="entity-categories-list__item entity-categories-list__item_active">Для вас</div>
-    <div class="entity-categories-list__item">Суши</div>
-    <div class="entity-categories-list__item">Веган-меню</div>
-    <div class="entity-categories-list__item">Роллы</div>
+    <div
+        v-for="category in categories"
+        :key="category.id"
+        class="entity-categories-list__item"
+        :class="{'entity-categories-list__item_active': categoryActiveId === category.id}"
+        @click="handleSelectCategory(category.id)"
+    >
+      {{ category.title }}
+      <BaseIcon
+          v-if="category.categories.length"
+          name="ChevronForward"
+      />
+    </div>
+
+
   </div>
 </template>
 
-<script>
+<script setup>
+
+const {
+  categoryActiveId,
+  handleSelectCategory,
+  categories,
+  categoryActive} = useCatalog()
+
 
 </script>
 

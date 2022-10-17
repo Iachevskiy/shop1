@@ -5,6 +5,10 @@
   <Rocket  v-if="name === 'Rocket'"/>
   <InformationCircleOutline  v-if="name === 'InformationCircleOutline'"/>
   <ArrowBack  v-if="name === 'ArrowBack'"/>
+  <ArrowForward  v-if="name === 'ArrowForward'"/>
+  <ChevronBack  v-if="name === 'ChevronBack'"/>
+  <ChevronForward  v-if="name === 'ChevronForward'"/>
+  <Add  v-if="name === 'Add'"/>
 </template>
 
 <script setup>
@@ -15,6 +19,10 @@ import {
   Rocket,
   InformationCircleOutline,
   ArrowBack,
+  ArrowForward,
+  ChevronBack,
+  ChevronForward,
+  Add,
 } from "@vicons/ionicons5";
 
 defineProps({

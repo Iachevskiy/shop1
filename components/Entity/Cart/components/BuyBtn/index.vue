@@ -1,8 +1,8 @@
 <template>
   <BaseButton
-      isStrong
       size="large"
       fullWidth
+      theme="primary"
       class="entity-cart-buy-btn__wrapper"
   >
     <div class="entity-cart-buy-btn">

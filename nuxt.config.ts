@@ -9,5 +9,11 @@ export default defineNuxtConfig({
                 }
             }
         }
+    },
+    vue: {
+        config: {
+            productionTip: false,
+            devtools: true
+        }
     }
 })

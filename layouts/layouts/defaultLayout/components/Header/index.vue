@@ -5,7 +5,7 @@
 
     <BaseButton
         title="Укажите адрес доставки"
-        isStrong
+        theme="primary"
         size="large"
         iconLeft="Navigate"
         class="default-layout-header__change-address"
@@ -17,10 +17,8 @@
 
     <BaseButton
         title="Войти"
-        isStrong
         size="large"
-        type="tertiary"
-        isSecondary
+        theme="secondary"
         class="default-layout-header__enter"
     />
 

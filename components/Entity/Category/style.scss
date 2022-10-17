@@ -1,0 +1,9 @@
+.entity-category {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__title {
+    @include text-28-36-700;
+  }
+}
