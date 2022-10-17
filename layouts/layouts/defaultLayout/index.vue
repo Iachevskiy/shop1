@@ -9,7 +9,9 @@
 
           <!--  CategoriesList  -->
           <div class="default-layout__main-sidebar-left">
-            <EntityCategoriesList/>
+            <ClientOnly>
+              <EntityCategoriesList/>
+            </ClientOnly>
           </div>
 
           <!--  Main-content  -->

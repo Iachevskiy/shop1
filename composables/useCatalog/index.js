@@ -3,17 +3,19 @@ import { db } from '@/api/base';
 
 export const useCatalog = function () {
 
-    const dbCategories = cloneDeep(db.categories2);
 
-    const catalog = dbCategories.map(category => {
+
+    const dbCategories = useState('dbCategories', () =>  cloneDeep(db.categories2));
+
+    const catalog = useState('dbCatalog', () => dbCategories.value.map(category => {
         // подкатегории
-        category.categories = dbCategories.filter(item => item.parentId === category.id);
+        category.categories = dbCategories.value.filter(item => item.parentId === category.id);
 
         // получаем url родителя
         const getParentUrl = (url)=>{
-            const category = dbCategories.find(item=> item.url === url);
+            const category = dbCategories.value.find(item=> item.url === url);
             const categoryParentId = category.parentId;
-            const parentCategory = dbCategories.find(item=> item.id === categoryParentId);
+            const parentCategory = dbCategories.value.find(item=> item.id === categoryParentId);
             return parentCategory ? parentCategory.url : null;
         };
 
@@ -27,8 +29,9 @@ export const useCatalog = function () {
             return url;
         }
         category.fullUrl = '/' + getFullUrl([category.url]).join('/');
+
         return category;
-    })
+    }))
 
     const categoryActiveId = useState('categoryActiveId', () => 0);
 
@@ -39,24 +42,31 @@ export const useCatalog = function () {
     };
 
     const setPageByFullUrl = (fullUrl) => {
-        const category = catalog
+        const category = catalog.value
             .find(category => category.fullUrl === fullUrl || ((category.fullUrl + '/') === fullUrl))
 
         categoryActiveId.value = category.id;
     };
 
     const categories = computed(() => {
-        return catalog.filter(category => category.parentId === categoryActiveId.value);
+        return catalog.value.filter(category => category.parentId === categoryActiveId.value);
     })
 
     const categoryActive = computed(() => {
-        return catalog.find(category => category.id === categoryActiveId.value);
+        return catalog.value.find(category => category.id === categoryActiveId.value);
+    })
+
+    const categoryActiveParent = computed(() => {
+        const categoryActiveParent = catalog.value.find(category => category.id === categoryActive.value.parentId);
+        return categoryActiveParent;
     })
     return {
+        catalog,
         categoryActiveId,
         handleSelectCategory,
         categories,
         categoryActive,
-        setPageByFullUrl
+        setPageByFullUrl,
+        categoryActiveParent,
     }
 }
