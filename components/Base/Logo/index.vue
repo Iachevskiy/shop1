@@ -1,5 +1,9 @@
 <template>
-  <img src="~/assets/images/logo.svg" alt="logo" width="148">
+  <img
+    src="~/assets/images/logo.svg"
+    alt="logo"
+    width="148"
+  >
 </template>
 
 <script>

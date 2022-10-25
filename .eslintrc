@@ -1,0 +1,80 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "nuxt3-auto-import/nuxt": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "parser": "@typescript-eslint/parser"
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-base",
+    "plugin:vue/vue3-recommended",
+    "plugin:nuxt/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "import", "nuxt3-auto-import"],
+  "rules": {
+    "array-bracket-newline": [
+      "error",
+      { "minItems": 2 }
+    ],
+    "array-element-newline": [
+      "error",
+      {
+        "multiline": true,
+        "minItems": 2
+      }
+    ],
+    "consistent-return": "off",
+    "no-use-before-define": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "func-names": "off",
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never",
+        "vue": "never"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-param-reassign": "off",
+    "no-restricted-globals": "off",
+    "vue/attribute-hyphenation": [
+      "error",
+      "never"
+    ],
+    "vue/multi-word-component-names": "off",
+    "vue/new-line-between-multi-line-property": [
+      "error",
+      {
+        "minLineOfMultilineProperty": 2
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".vue"
+        ]
+      },
+      "alias": {
+        "map": [[
+          "@",
+          "./"
+        ]],
+        "extensions": [
+          ".js",
+          ".vue"
+        ]
+      }
+    }
+  }
+}

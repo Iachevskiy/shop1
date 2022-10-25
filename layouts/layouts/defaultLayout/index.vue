@@ -1,48 +1,52 @@
 <template>
-  <n-config-provider :theme-overrides="themeOverrides">
+  <n-config-provider :themeOverrides="themeOverrides">
     <div class="default-layout">
+      <Header />
 
-      <Header/>
-
-      <div class="default-layout__main">
+      <div
+        class="default-layout__main"
+        :class="{'default-layout__main_shadow': headerShadow}"
+      >
         <div class="default-layout__main-container">
-
           <!--  CategoriesList  -->
           <div class="default-layout__main-sidebar-left">
             <ClientOnly>
-              <EntityCategoriesList/>
+              <EntityCategoriesList />
             </ClientOnly>
           </div>
 
           <!--  Main-content  -->
           <div class="default-layout__main-content">
+            <div ref="headerShadowFlag" />
             <slot />
           </div>
 
           <!--  Cart  -->
           <div class="default-layout__main-sidebar-right">
-            <EntityCart/>
+            <EntityCart />
           </div>
         </div>
 
         <!--  footer  -->
-        <div class="default-layout__footer">footer</div>
+        <div class="default-layout__footer">
+          footer
+        </div>
       </div>
     </div>
   </n-config-provider>
 </template>
 
 <script setup>
-import Header from './components/Header'
-
-import { NConfigProvider } from 'naive-ui'
+import { NConfigProvider } from 'naive-ui';
+import { cloneDeep } from 'lodash';
+import Header from './components/Header';
+import { db } from '../../../api/base';
 
 const primaryColor = 'rgb(252, 224, 0)';
 const primaryColorHover = '#f2d700';
 
 const SecondaryColor = '#f1f0ed';
 const SecondaryColorHover = '#e7e6e4';
-
 
 const defaultColor = 'white';
 const defaultColorHover = '#fafbfc';
@@ -60,13 +64,13 @@ const themeOverrides = {
     paddingLarge: '0 20px',
     fontSizeLarge: '16px',
 
-    //цвет пульсации
+    // цвет пульсации
     rippleColor: 'red',
 
-    //Primary type-theme
+    // Primary type-theme
     // background
     colorPrimary: primaryColor,
-    colorHoverPrimary:  primaryColorHover,
+    colorHoverPrimary: primaryColorHover,
     colorPressedPrimary: primaryColorHover,
     colorFocusPrimary: primaryColorHover,
     colorDisabledPrimary: primaryColor,
@@ -83,7 +87,6 @@ const themeOverrides = {
     borderPressedPrimary: 'none',
     borderFocusPrimary: 'none',
     borderDisabledPrimary: 'none',
-
 
     // Secondary(Info) type-theme
     // background
@@ -129,9 +132,36 @@ const themeOverrides = {
     borderFocusWarning: 'none',
     borderDisabledWarning: 'none',
 
-
   },
-}
+};
+
+const headerShadowFlag = ref(null);
+const headerShadow = useState('headerShadow', () => false);
+const initObserverHeaderShadow = () => {
+  const options = {
+    rootMargin: '0px',
+  };
+
+  const handleObserver = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        console.log('isIntersecting');
+        headerShadow.value = false;
+      } else {
+        console.log('notIntersecting');
+        headerShadow.value = true;
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(handleObserver, options);
+  observer.observe(headerShadowFlag.value);
+};
+
+onMounted(() => {
+  initObserverHeaderShadow();
+});
+
 </script>
 
 <style lang="scss" src="./style.scss" />

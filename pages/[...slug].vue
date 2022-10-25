@@ -1,15 +1,23 @@
 <template>
   <div>
-    <EntityCategory/>
+    <EntityMainImage />
+
+    <EntityCategory
+      v-for="category in categories"
+      :key="category.id"
+      :category="category"
+    />
   </div>
 </template>
 
 <script setup>
-definePageMeta({
-  // keepalive: true
-})
-const route = useRoute()
-const { setPageByFullUrl } = useCatalog()
-setPageByFullUrl(route.fullPath)
-</script>
 
+import { useCatalog } from '@/composables';
+
+const {
+  categoryActiveId,
+  handleSelectCategory,
+  categories,
+} = useCatalog();
+
+</script>

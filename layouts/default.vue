@@ -5,5 +5,6 @@
 </template>
 
 <script setup>
-import defaultLayout from './layouts/defaultLayout'
+import defaultLayout from './layouts/defaultLayout';
+
 </script>

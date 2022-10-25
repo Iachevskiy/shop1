@@ -1,4 +1,7 @@
 .entity-categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
   &__title {
     @include text-20-28-500;

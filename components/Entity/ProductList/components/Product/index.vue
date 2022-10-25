@@ -2,24 +2,43 @@
   <div class="entity-product">
     <div class="entity-product__img-wrapper">
       <img
-          class="entity-product__img"
-          src="https://eda.yandex/images/1380157/a3b5dfbcc776ce193c240d7fdcaa8925-216x188.jpeg"
-          alt="">
+        class="entity-product__img"
+        :src="imgUrl"
+        alt=""
+      >
     </div>
-
-    <div class="entity-product__price">192p</div>
-    <div class="entity-product__title">Картофель фри</div>
+    <div class="entity-product__price">
+      {{ props.product.price }}p
+    </div>
+    <div class="entity-product__title">
+      {{ props.product.name }}
+    </div>
     <BaseButton
-        title="Добавить"
-        theme="secondary"
-        iconLeft="Add"
-        fullWidth
+      title="Добавить"
+      theme="secondary"
+      iconLeft="Add"
+      fullWidth
     />
-
   </div>
 </template>
 
-<script>
+<script setup>
+const props = defineProps({
+  product: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+
+const imgUrl = computed(() => {
+  // console.log('test');
+  let url = props.product.picture.uri;
+  url = url.replace('{w}', '216');
+  url = url.replace('{h}', '188');
+  url = `https://eda.yandex${url}`;
+  return url;
+});
+
 </script>
 
-<style lang="scss" src="./style.scss"/>
+<style lang="scss" src="./style.scss" />

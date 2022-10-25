@@ -1,13 +1,17 @@
 <template>
   <BaseButton
-      size="large"
-      fullWidth
-      theme="primary"
-      class="entity-cart-buy-btn__wrapper"
+    size="large"
+    fullWidth
+    theme="primary"
+    class="entity-cart-buy-btn__wrapper"
   >
     <div class="entity-cart-buy-btn">
-      <div class="entity-cart-buy-btn__title">Верно, далее</div>
-      <div class="entity-cart-buy-btn__total">1500p</div>
+      <div class="entity-cart-buy-btn__title">
+        Верно, далее
+      </div>
+      <div class="entity-cart-buy-btn__total">
+        1500p
+      </div>
     </div>
   </BaseButton>
 </template>

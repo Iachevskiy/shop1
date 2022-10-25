@@ -1,1 +1,1 @@
-export { useCatalog }  from './useCatalog'
+export { useCatalog } from './useCatalog';

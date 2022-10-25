@@ -1,72 +1,54 @@
-import { cloneDeep } from 'lodash'
+import { cloneDeep } from 'lodash';
 import { db } from '@/api/base';
 
 export const useCatalog = function () {
+  const nuxtApp = useNuxtApp();
 
+  const categories = useState('categories', () => cloneDeep(db.categories));
 
+  const categoryActiveId = useState('categoryActiveId', () => 1);
+  const selectingCategoryByMenu = useState('selectingCategoryByMenu', () => false);
+  const handleSelectCategory = (id) => {
+    selectingCategoryByMenu.value = true;
+    categoryActiveId.value = id;
+  };
 
-    const dbCategories = useState('dbCategories', () =>  cloneDeep(db.categories2));
+  const observer = useState('observer', () => null);
+  const initObserver = () => {
+    // Настройки observer
+    const options = {
+      rootMargin: '-200px 0px -400px 0px',
+    };
 
-    const catalog = useState('dbCatalog', () => dbCategories.value.map(category => {
-        // подкатегории
-        category.categories = dbCategories.value.filter(item => item.parentId === category.id);
-
-        // получаем url родителя
-        const getParentUrl = (url)=>{
-            const category = dbCategories.value.find(item=> item.url === url);
-            const categoryParentId = category.parentId;
-            const parentCategory = dbCategories.value.find(item=> item.id === categoryParentId);
-            return parentCategory ? parentCategory.url : null;
-        };
-
-        // получаем полный url
-        const getFullUrl = (url)=> {
-            const parentUrl = getParentUrl(url[0]);
-            if(parentUrl) {
-                url.unshift(parentUrl)
-                return getFullUrl(url)
-            }
-            return url;
+    const handleObserver = (entries) => {
+      entries.forEach((entry) => {
+        const showId = Number(entry.target.dataset.categoryId);
+        if (entry.isIntersecting) {
+          const openByClick = selectingCategoryByMenu.value && showId === categoryActiveId.value;
+          const openByScroll = !selectingCategoryByMenu.value;
+          if (openByClick) {
+            selectingCategoryByMenu.value = false;
+          }
+          if (openByScroll) {
+            categoryActiveId.value = showId;
+          }
         }
-        category.fullUrl = '/' + getFullUrl([category.url]).join('/');
-
-        return category;
-    }))
-
-    const categoryActiveId = useState('categoryActiveId', () => 0);
-
-    const handleSelectCategory = (id) => {
-        categoryActiveId.value = id;
-        const router = useRouter();
-        router.push({ path: categoryActive.value.fullUrl || '' });
+      });
     };
 
-    const setPageByFullUrl = (fullUrl) => {
-        const category = catalog.value
-            .find(category => category.fullUrl === fullUrl || ((category.fullUrl + '/') === fullUrl))
+    observer.value = new IntersectionObserver(handleObserver, options);
+  };
 
-        categoryActiveId.value = category.id;
-    };
-
-    const categories = computed(() => {
-        return catalog.value.filter(category => category.parentId === categoryActiveId.value);
-    })
-
-    const categoryActive = computed(() => {
-        return catalog.value.find(category => category.id === categoryActiveId.value);
-    })
-
-    const categoryActiveParent = computed(() => {
-        const categoryActiveParent = catalog.value.find(category => category.id === categoryActive.value.parentId);
-        return categoryActiveParent;
-    })
-    return {
-        catalog,
-        categoryActiveId,
-        handleSelectCategory,
-        categories,
-        categoryActive,
-        setPageByFullUrl,
-        categoryActiveParent,
+  nuxtApp.hook('page:finish', () => {
+    if (!observer.value) {
+      initObserver();
     }
-}
+  });
+
+  return {
+    categories,
+    categoryActiveId,
+    handleSelectCategory,
+    observer,
+  };
+};

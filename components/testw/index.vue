@@ -6,8 +6,8 @@
 
 <script>
 export default {
-  name: "testComp"
-}
+  name: 'TestComp',
+};
 </script>
 
 <style lang="scss" src="./style.scss" />

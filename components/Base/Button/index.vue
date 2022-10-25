@@ -1,33 +1,43 @@
 <template>
-<div
-    class="base-button"
->
-  <n-button
+  <div class="base-button">
+    <n-button
       class="base-button__btn"
       :class="{'base-button__btn_full-width': fullWidth}"
       :loading="isLoading"
       :strong="!textLite"
+      :disabled="disabled"
       :type="type"
       :size="size"
-  >
-    <slot/>
-    <div class="base-button__content">
-      <template v-if="iconLeft">
-        <BaseIcon :name="iconLeft"/>
-      </template>
+      @click="handleClick"
+    >
+      <slot />
+      <div class="base-button__content">
+        <template v-if="iconLeft">
+          <BaseIcon :name="iconLeft" />
+        </template>
 
-      {{title}}
-      <template v-if="iconRight">
-        <BaseIcon :name="iconRight"/>
-      </template>
-    </div>
-
-  </n-button>
-</div>
+        {{ title }}
+        <template v-if="iconRight">
+          <BaseIcon :name="iconRight" />
+        </template>
+      </div>
+    </n-button>
+  </div>
 </template>
 
+<script>
+import { NButton } from 'naive-ui';
+
+export default {
+  name: 'CustomName',
+};
+</script>
+
 <script setup>
-import { NButton } from 'naive-ui'
+const emit = defineEmits([
+  'inFocus',
+  'submit',
+]);
 
 const props = defineProps({
   title: {
@@ -47,9 +57,9 @@ const props = defineProps({
       return [
         'primary',
         'secondary',
-        'default'
-      ].includes(value)
-    }
+        'default',
+      ].includes(value);
+    },
   },
 
   textLite: {
@@ -66,18 +76,18 @@ const props = defineProps({
         'small',
         'medium',
         'large',
-      ].includes(value)
+      ].includes(value);
     },
   },
 
   iconLeft: {
     type: String,
-    default: ''
+    default: '',
   },
 
   iconRight: {
     type: String,
-    default: ''
+    default: '',
   },
 
   fullWidth: {
@@ -85,20 +95,30 @@ const props = defineProps({
     default: false,
   },
 
-})
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+
+});
 
 const type = computed(() => {
-  if(props.theme === 'primary') {
-    return 'primary'
+  if (props.theme === 'primary') {
+    return 'primary';
   }
-  if(props.theme === 'secondary') {
-    return 'info'
+  if (props.theme === 'secondary') {
+    return 'info';
   }
-  if(props.theme === 'default') {
-    return 'warning'
+  if (props.theme === 'default') {
+    return 'warning';
   }
-  return null
-})
+  return null;
+});
+
+const handleClick = (e) => {
+  if (props.disabled) return;
+  this.$emit('onClick', e);
+};
 </script>
 
 <style lang="scss" src="./style.scss" />
