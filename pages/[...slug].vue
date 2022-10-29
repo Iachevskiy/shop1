@@ -1,23 +1,30 @@
 <template>
-  <div>
-    <EntityMainImage />
+  <LayoutGrid>
+    <template #sidebarLeft>
+      <EntityCategoriesList />
+    </template>
+    <template #mainContent>
+      <EntityMainImage />
 
-    <EntityCategory
-      v-for="category in categories"
-      :key="category.id"
-      :category="category"
-    />
-  </div>
+      <EntityCategory
+        v-for="category in categories"
+        :key="category.id"
+        :category="category"
+      />
+    </template>
+    <template #sidebarRight>
+      <EntityCart />
+    </template>
+  </LayoutGrid>
 </template>
 
 <script setup>
-
 import { useCatalog } from '@/composables';
 
-const {
-  categoryActiveId,
-  handleSelectCategory,
-  categories,
-} = useCatalog();
+const { categories } = useCatalog();
+
+definePageMeta({
+  keepalive: true,
+});
 
 </script>

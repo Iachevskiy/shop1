@@ -1,5 +1,5 @@
 <template>
-  <n-icon size="20">
+  <n-icon :size="size">
     <icons :name="name" />
   </n-icon>
 </template>
@@ -12,6 +12,14 @@ defineProps({
   name: {
     type: String,
     required: true,
+  },
+
+  size: {
+    type: [
+      Number,
+      String,
+    ],
+    default: 20,
   },
 });
 

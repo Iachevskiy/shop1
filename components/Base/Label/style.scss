@@ -1,0 +1,10 @@
+.entity-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+
+  &__title {
+    @include text-14-20-400;
+  }
+}

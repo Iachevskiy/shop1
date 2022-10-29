@@ -1,47 +1,3 @@
-<template>
-  <n-config-provider :themeOverrides="themeOverrides">
-    <div class="default-layout">
-      <Header />
-
-      <div
-        class="default-layout__main"
-        :class="{'default-layout__main_shadow': headerShadow}"
-      >
-        <div class="default-layout__main-container">
-          <!--  CategoriesList  -->
-          <div class="default-layout__main-sidebar-left">
-            <ClientOnly>
-              <EntityCategoriesList />
-            </ClientOnly>
-          </div>
-
-          <!--  Main-content  -->
-          <div class="default-layout__main-content">
-            <div ref="headerShadowFlag" />
-            <slot />
-          </div>
-
-          <!--  Cart  -->
-          <div class="default-layout__main-sidebar-right">
-            <EntityCart />
-          </div>
-        </div>
-
-        <!--  footer  -->
-        <div class="default-layout__footer">
-          footer
-        </div>
-      </div>
-    </div>
-  </n-config-provider>
-</template>
-
-<script setup>
-import { NConfigProvider } from 'naive-ui';
-import { cloneDeep } from 'lodash';
-import Header from './components/Header';
-import { db } from '../../../api/base';
-
 const primaryColor = 'rgb(252, 224, 0)';
 const primaryColorHover = '#f2d700';
 
@@ -52,9 +8,17 @@ const defaultColor = 'white';
 const defaultColorHover = '#fafbfc';
 
 const colorBtn = '#21201f';
-const themeOverrides = {
+
+export default {
   common: {
 
+  },
+
+  Input: {
+    borderRadius: '8px',
+    borderFocus: `1px solid ${SecondaryColor}`,
+    borderHover: `1px solid ${SecondaryColor}`,
+    boxShadowFocus: 'none',
   },
 
   Button: {
@@ -134,34 +98,3 @@ const themeOverrides = {
 
   },
 };
-
-const headerShadowFlag = ref(null);
-const headerShadow = useState('headerShadow', () => false);
-const initObserverHeaderShadow = () => {
-  const options = {
-    rootMargin: '0px',
-  };
-
-  const handleObserver = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        console.log('isIntersecting');
-        headerShadow.value = false;
-      } else {
-        console.log('notIntersecting');
-        headerShadow.value = true;
-      }
-    });
-  };
-
-  const observer = new IntersectionObserver(handleObserver, options);
-  observer.observe(headerShadowFlag.value);
-};
-
-onMounted(() => {
-  initObserverHeaderShadow();
-});
-
-</script>
-
-<style lang="scss" src="./style.scss" />

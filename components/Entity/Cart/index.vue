@@ -3,7 +3,6 @@
     <h2 class="entity-cart__title">
       Корзина
     </h2>
-
     <CartList class="entity-cart__list" />
 
     <!--  Кнопка Доставка  -->
@@ -14,6 +13,7 @@
 </template>
 
 <script setup>
+
 import DeliveryBtn from './components/DeliveryBtn';
 import BuyBtn from './components/BuyBtn';
 import CartList from './components/CartList';

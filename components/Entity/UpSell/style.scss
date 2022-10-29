@@ -1,0 +1,15 @@
+.entity-upsell {
+  display: flex;
+  gap: 16px;
+  overflow: scroll;
+  padding-bottom: 20px;
+
+  .entity-product {
+    height: 300px;
+    min-width: 160px;
+
+    &__img-wrapper {
+      height: 118px;
+    }
+  }
+}

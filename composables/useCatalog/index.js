@@ -5,6 +5,7 @@ export const useCatalog = function () {
   const nuxtApp = useNuxtApp();
 
   const categories = useState('categories', () => cloneDeep(db.categories));
+  const products = useState('products', () => cloneDeep(db.products));
 
   const categoryActiveId = useState('categoryActiveId', () => 1);
   const selectingCategoryByMenu = useState('selectingCategoryByMenu', () => false);
@@ -50,5 +51,6 @@ export const useCatalog = function () {
     categoryActiveId,
     handleSelectCategory,
     observer,
+    products,
   };
 };

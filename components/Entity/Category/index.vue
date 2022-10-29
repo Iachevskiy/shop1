@@ -1,18 +1,20 @@
 <template>
   <div
-    ref="category"
+    ref="categoryRef"
     class="entity-category"
     :data-category-id="props.category.id"
   >
-    <div
-      ref="categoryTitle"
-      class="entity-category__title"
-      :data-category-id="props.category.id"
-    >
+    <div class="entity-category__title">
       {{ props.category.title }}
     </div>
 
-    <EntityProductList :poducts="props.category.items" />
+    <div class="entity-category__product-list">
+      <EntityProduct
+        v-for="productId in props.category.items"
+        :key="productId"
+        :productId="productId"
+      />
+    </div>
   </div>
 </template>
 
@@ -28,17 +30,18 @@ const props = defineProps({
   },
 });
 
-const category = ref(null);
+// scroll when select category
+const categoryRef = ref(null);
 watch(categoryActiveId, (newId) => {
   if (newId === props.category.id) {
-    category.value.scrollIntoView({ behavior: 'smooth' });
+    categoryRef.value.scrollIntoView({ behavior: 'smooth' });
   }
 });
 
-const categoryTitle = ref(null);
+// add observer item
 watch(observer, (newObserver) => {
   if (newObserver) {
-    observer.value.observe(category.value);
+    observer.value.observe(categoryRef.value);
   }
 });
 

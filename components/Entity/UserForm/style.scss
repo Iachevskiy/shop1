@@ -1,0 +1,20 @@
+.entity-user-form {
+  display: grid;
+  grid-template-areas:
+    "title ."
+    "name email";
+  grid-gap: 10px;
+
+  &__title {
+    @include text-20-28-500;
+    grid-area: title;
+  }
+
+  &__name {
+    grid-area: name;
+  }
+
+  &__email {
+    grid-area: email;
+  }
+}

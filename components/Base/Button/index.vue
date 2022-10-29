@@ -37,6 +37,7 @@ export default {
 const emit = defineEmits([
   'inFocus',
   'submit',
+  'onClick',
 ]);
 
 const props = defineProps({
@@ -117,7 +118,7 @@ const type = computed(() => {
 
 const handleClick = (e) => {
   if (props.disabled) return;
-  this.$emit('onClick', e);
+  emit('onClick', e);
 };
 </script>
 
