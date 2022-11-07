@@ -1,0 +1,12 @@
+.player-layout-scroll-btn {
+  height: 50px;
+  width: 50px;
+  background: #84f0c1;
+
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: max-content;
+    }
+}

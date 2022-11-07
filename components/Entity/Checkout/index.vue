@@ -1,25 +1,24 @@
 <template>
   <div class="entity-checkout">
-    <div class="entity-checkout__title entity-checkout__title_main">
-      <BaseButton
-        title="Назад"
-        theme="secondary"
-        iconLeft="ArrowBack"
-        @click="router.back()"
-      />
-      Оформление заказа
-    </div>
-    <DeliveryDetails class="entity-checkout__delivery-details" />
+    <BaseTitle
+      class="entity-checkout__title-main"
+      title="Оформление заказа"
+      size="large"
+      btnBack
+    />
+    <OrderDetails class="entity-checkout__delivery-details" />
     <PriceDetails class="entity-checkout__price-details" />
-    <div class="entity-checkout__title entity-checkout__title_upsell">
-      Что-то еще?
-    </div>
+    <BaseTitle
+      class="entity-checkout__title-upsell"
+      title="Что-то еще?"
+      size="large"
+    />
     <EntityUpSell class="entity-checkout__upSell" />
   </div>
 </template>
 
 <script setup>
-import DeliveryDetails from './components/DeliveryDetails';
+import OrderDetails from './components/OrderDetails';
 import PriceDetails from './components/PriceDetails';
 
 const router = useRouter();

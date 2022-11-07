@@ -5,15 +5,16 @@
     fullWidth
     theme="primary"
     class="entity-cart-buy-btn__wrapper"
-    @click="toggleShowCheckout"
+    @click="router.push({ path: '/checkout' })"
   >
     <div class="entity-cart-buy-btn">
-      <NuxtLink
-        to="/checkout"
-        class="entity-cart-buy-btn__title"
-      >
-        Верно, далее
-      </NuxtLink>
+      <!--      <NuxtLink-->
+      <!--        to="/checkout"-->
+      <!--        class="entity-cart-buy-btn__title"-->
+      <!--      >-->
+      <!--       -->
+      <!--      </NuxtLink>-->
+      Верно, далее
       <div class="entity-cart-buy-btn__total">
         {{ cartTotal }} p
       </div>
@@ -22,10 +23,11 @@
 </template>
 
 <script setup>
-import { useCheckout, useCart } from '@/composables';
+import { useCart } from '@/composables';
 
 const { cartTotal } = useCart();
-const { toggleShowCheckout } = useCheckout();
+
+const router = useRouter();
 
 </script>
 

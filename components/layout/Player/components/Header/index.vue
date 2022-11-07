@@ -1,11 +1,10 @@
 <template>
-  <div class="entity-checkout-delivery-detail">
-    <EntityUserForm />
+  <div class="player-layout-header">
+    header
   </div>
 </template>
 
 <script setup>
-
 </script>
 
 <style lang="scss" src="./style.scss" />

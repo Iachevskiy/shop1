@@ -1,5 +1,9 @@
 <template>
-  <n-config-provider :themeOverrides="themeSettings">
+  <n-config-provider
+    :themeOverrides="themeSettings"
+    :locale="ruRU"
+    :dateLocale="dateRuRU"
+  >
     <div class="default-layout">
       <!--   header   -->
       <div class="default-layout__header">
@@ -50,7 +54,7 @@
 </template>
 
 <script setup>
-import { NConfigProvider } from 'naive-ui';
+import { NConfigProvider, ruRU, dateRuRU } from 'naive-ui';
 import themeSettings from '../themeSettings';
 
 const slots = useSlots();

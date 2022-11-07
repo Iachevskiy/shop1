@@ -1,13 +1,16 @@
 <template>
   <div class="entity-checkout-price-detail">
-    <div class="entity-checkout-price-detail__title">
-      Способ оплаты
-    </div>
+    <BaseTitle
+      class="entity-checkout-price-detail__title"
+      title="Способ оплаты"
+    />
+
+    <BasePaymentSelect v-model="paymentType" />
   </div>
 </template>
 
-<script>
-
+<script setup>
+const paymentType = ref('');
 </script>
 
 <style lang="scss" src="./style.scss" />

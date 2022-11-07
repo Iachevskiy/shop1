@@ -1,0 +1,27 @@
+.entity-player-view {
+  min-height: 100%;
+  max-height: 100%;
+  width: 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  &__img{
+    height: 700px;
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__play-btn {
+    position: absolute;
+    margin: auto;
+    top: 40%;
+    left: 40%;
+    z-index: 999;
+    opacity: 0.8;
+  }
+}

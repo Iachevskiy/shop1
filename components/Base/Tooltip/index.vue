@@ -1,7 +1,10 @@
 <template>
   <div class="entity-tooltip">
     <ClientOnly>
-      <n-tooltip trigger="hover">
+      <n-tooltip
+        trigger="hover"
+        :style="{ maxWidth: '300px' }"
+      >
         <template #trigger>
           <slot />
         </template>

@@ -1,24 +1,24 @@
 <template>
-  <div>
-    <BaseLabel
-      v-if="props.label"
-      :label="props.label"
-      :hint="props.hint"
-    />
+  <BaseFormItemWrapper
+    v-bind="cProps"
+  >
     <n-input
       v-model:value="value"
       type="text"
       placeholder="Basic Input"
       v-bind="cProps"
     />
-  </div>
+  </BaseFormItemWrapper>
 </template>
 
 <script setup>
 import { NInput } from 'naive-ui';
 import { cloneDeep } from 'lodash';
+import formItemProps from '@/components/Base/FormItemWrapper/props';
 
 const props = defineProps({
+  ...formItemProps,
+
   type: {
     type: String,
     default: 'text',
@@ -50,11 +50,6 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: '...',
-  },
-
-  label: {
-    type: String,
-    default: '',
   },
 
   readonly: {
@@ -142,6 +137,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+
   modelValue: {
     type: [
       Number,

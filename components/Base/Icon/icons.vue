@@ -10,6 +10,7 @@
   <ChevronForward v-if="name === 'ChevronForward'" />
   <Add v-if="name === 'Add'" />
   <Remove v-if="name === 'Minus'" />
+  <Play v-if="name === 'Play'" />
 </template>
 
 <script setup>
@@ -25,6 +26,7 @@ import {
   ChevronForward,
   Add,
   Remove,
+  Play,
 } from '@vicons/ionicons5';
 
 defineProps({

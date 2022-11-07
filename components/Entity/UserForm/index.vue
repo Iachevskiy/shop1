@@ -1,8 +1,9 @@
 <template>
   <div class="entity-user-form">
-    <div class="entity-user-form__title">
-      Личные данные
-    </div>
+    <BaseTitle
+      class="entity-user-form__title"
+      title="Личные данные"
+    />
 
     <BaseInput
       v-model="data.name"
@@ -18,15 +19,20 @@
       class="entity-user-form__email"
     />
 
-    {{ data.name }}
-    {{ data.email }}
+    <BaseCheckbox
+      v-model="data.notify"
+      class="entity-user-form__notify"
+    >
+      Соглашаюсь получать рекламные сообщения на эл. почту, аб. номер
+    </BaseCheckbox>
   </div>
 </template>
 
 <script setup>
 const data = reactive({
-  name: 'tt',
+  name: '',
   email: '',
+  notify: false,
 });
 </script>
 

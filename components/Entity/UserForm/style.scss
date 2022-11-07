@@ -2,11 +2,11 @@
   display: grid;
   grid-template-areas:
     "title ."
-    "name email";
+    "name email"
+    "notify notify";
   grid-gap: 10px;
 
   &__title {
-    @include text-20-28-500;
     grid-area: title;
   }
 
@@ -16,5 +16,9 @@
 
   &__email {
     grid-area: email;
+  }
+
+  &__notify {
+    grid-area: notify;
   }
 }

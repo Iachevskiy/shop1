@@ -1,0 +1,46 @@
+.entity-delivery-form {
+  display: grid;
+  grid-template-areas:
+    "title title title title"
+    "address address address address"
+    "entrance intercom floor apartment"
+    "comment comment comment comment"
+    "date date time time";
+  grid-gap: 10px;
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__address {
+    grid-area: address;
+  }
+
+  &__entrance {
+    grid-area: entrance;
+  }
+
+  &__intercom {
+    grid-area: intercom;
+  }
+
+  &__floor {
+    grid-area: floor;
+  }
+
+  &__apartment {
+    grid-area: apartment;
+  }
+
+  &__comment {
+    grid-area: comment;
+  }
+
+  &__date {
+    grid-area: date;
+  }
+
+  &__time {
+    grid-area: time;
+  }
+}

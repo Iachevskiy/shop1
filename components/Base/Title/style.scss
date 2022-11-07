@@ -1,0 +1,19 @@
+.base-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &__size {
+    &_small {
+
+    }
+
+    &_medium {
+      @include text-20-28-500;
+    }
+
+    &_large {
+      @include text-24-32-700;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.base-form-item-wrapper {
+  display: grid;
+  grid-template-areas:
+    "label info"
+    "item item"
+    "error error";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-column-gap: 6px;
+  grid-row-gap: 3px;
+
+  &__has-error {
+    .base-form-item-wrapper__label {
+      color: $color-primary-red
+    }
+  }
+
+  &__label {
+    @include text-12-16-400;
+    grid-area: label;
+  }
+
+  &__info {
+    grid-area: info;
+  }
+
+  &__item {
+    grid-area: item;
+  }
+
+  &__error {
+    @include text-12-16-400;
+    color: $color-primary-red;
+    grid-area: error;
+    margin-top: -3px;
+  }
+}

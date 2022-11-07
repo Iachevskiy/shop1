@@ -13,16 +13,11 @@
   overflow-y: scroll;
 
   &__title {
-    @include text-24-32-700;
-
-    &_main {
+    &-main {
       grid-area: titleMain;
-      display: flex;
-      align-items: center;
-      gap: 16px;
     }
 
-    &_upsell {
+    &-upsell {
       grid-area: titleUpsell;
     }
   }
