@@ -1,0 +1,43 @@
+.base-counter {
+  border: 1px solid $color-gray-30;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  user-select: none;
+
+  &__count {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 12px;
+    cursor: pointer;
+
+    &:hover,
+    &:active
+    {
+      background: $color-gray-15;
+    }
+  }
+
+  &__theme-row {
+    background: $color-gray-15;
+    border: none;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 12px;
+
+    .base-counter__icon {
+      height: max-content;
+      width: max-content;
+    }
+  }
+}

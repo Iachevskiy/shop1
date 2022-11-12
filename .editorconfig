@@ -1,0 +1,34 @@
+# editorconfig.org
+## top-most EditorConfig file
+root = true
+
+[*]
+indent_size = 2
+indent_style = space
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[{*.md,*.html}]
+indent_size = unset
+trim_trailing_whitespace = false
+
+[{Makefile,**.mk}]
+## Use tabs for indentation (Makefiles require tabs)
+indent_style = tab
+
+[{Dockerfile. **image.sample}]
+indent_size = 4
+
+# Generated automatically files which probably you should ignore on your editor anyways
+[{public/**,vendor/assets/**,data/**,**.xml,**.yml.enc,**.svg,**.json,Gemfile.lock,db/views/**}]
+indent_size = unset
+insert_final_newline = unset
+indent_style = unset
+end_of_line = unset
+trim_trailing_whitespace = false
+
+# Checked by rubocop due to complex logic. Maybe we will add slim_lint in future for CI checks
+[{**.rb,**.slim,**.vue}]
+indent_size = unset

@@ -1,15 +1,30 @@
 <template>
-  <div>
-    <EntityCategory/>
-  </div>
+  <LayoutGrid>
+    <template #sidebarLeft>
+      <EntityCategoriesList />
+    </template>
+    <template #mainContent>
+      <EntityMainImage />
+
+      <EntityCategory
+        v-for="category in categories"
+        :key="category.id"
+        :category="category"
+      />
+    </template>
+    <template #sidebarRight>
+      <EntityCart />
+    </template>
+  </LayoutGrid>
 </template>
 
 <script setup>
-definePageMeta({
-  // keepalive: true
-})
-const route = useRoute()
-const { setPageByFullUrl } = useCatalog()
-setPageByFullUrl(route.fullPath)
-</script>
+import { useCatalog } from '@/composables';
 
+const { categories } = useCatalog();
+
+definePageMeta({
+  keepalive: true,
+});
+
+</script>

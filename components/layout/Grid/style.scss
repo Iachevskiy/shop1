@@ -1,0 +1,47 @@
+.default-layout {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $color-gray-10;
+  display: flex;
+  flex-direction: column;
+
+  &__main{
+    flex-grow: 1;
+    overflow-y: scroll;
+
+    &-container {
+      padding: 22px 6px;
+      max-width: 1370px;
+      margin: auto;
+      display: flex;
+      gap: 48px;
+    }
+
+    &-sidebar-left {
+      width: 232px;
+      height: calc(100vh - 124px);
+      position: sticky;
+      top: 22px;
+    }
+
+    &-sidebar-right {
+      width: 320px;
+      height: calc(100vh - 124px);
+      position: sticky;
+      top: 22px;
+    }
+
+    &-content {
+      flex-grow: 1;
+      max-width: 990px;
+    }
+  }
+
+  &__footer {
+    height: 150px;
+    background: #efd9ce;
+  }
+}

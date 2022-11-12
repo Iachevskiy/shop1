@@ -4,6 +4,13 @@
   justify-content: space-between;
   width: 100%;
 
+  //&__title {
+  //  @include text-16-24-500;
+  //  color: $color-gray-80;
+  //  outline: none;
+  //  text-decoration: none;
+  //}
+
   &__wrapper {
     .n-button .n-button__content {
       width: 100%;

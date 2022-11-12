@@ -1,0 +1,28 @@
+.player-layout-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+  //scroll-snap-type: x mandatory;
+
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+
+  &__main{
+    min-width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  &__author {
+    background: #b388eb;
+    min-width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+}

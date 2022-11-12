@@ -1,15 +1,34 @@
 <template>
   <BaseButton
-      size="large"
-      fullWidth
-      theme="primary"
-      class="entity-cart-buy-btn__wrapper"
+    v-if="cartTotal"
+    size="large"
+    fullWidth
+    theme="primary"
+    class="entity-cart-buy-btn__wrapper"
+    @click="router.push({ path: '/checkout' })"
   >
     <div class="entity-cart-buy-btn">
-      <div class="entity-cart-buy-btn__title">Верно, далее</div>
-      <div class="entity-cart-buy-btn__total">1500p</div>
+      <!--      <NuxtLink-->
+      <!--        to="/checkout"-->
+      <!--        class="entity-cart-buy-btn__title"-->
+      <!--      >-->
+      <!--       -->
+      <!--      </NuxtLink>-->
+      Верно, далее
+      <div class="entity-cart-buy-btn__total">
+        {{ cartTotal }} p
+      </div>
     </div>
   </BaseButton>
 </template>
+
+<script setup>
+import { useCart } from '@/composables';
+
+const { cartTotal } = useCart();
+
+const router = useRouter();
+
+</script>
 
 <style lang="scss" src="./style.scss" />
