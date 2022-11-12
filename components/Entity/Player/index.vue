@@ -42,7 +42,6 @@
 </template>
 
 <script setup>
-import { debounce, throttle } from 'lodash';
 import { useObserver, usePlayer, useMedia } from '@/composables';
 
 import PlayerView from './components/PlayerView';
@@ -55,6 +54,7 @@ const {
   view3Order,
   startShowId,
   fullShowId,
+  videos,
 } = usePlayer();
 
 const { observerSetRoot, addResizeObserver, addToResizeObserver } = useObserver();

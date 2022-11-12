@@ -6,15 +6,9 @@ import {
 } from '@/types';
 
 export const useObserver = function () {
-  const nuxtApp = useNuxtApp();
-
   const resizeObservers = useState('useObserverResizes', ():IResizeObserver[] => ([]));
   const observers = useState('useObserver', ():IObserver[] => ([]));
   const observerRootsWaiting = useState('useObserverRootsWaiting', ():IObserverRootWaiting[] => ([]));
-
-  nuxtApp.hook('page:finish', () => {
-
-  });
 
   // добавляем observer
   const addObserver = (data: IObserver): void => {
@@ -41,16 +35,31 @@ export const useObserver = function () {
     if (!observer) {
       return;
     }
+
+    // console.log('addToObserver 1', nameEl);
     const hasElInOserver = observer.items.find((item) => item.name === nameEl);
     if (hasElInOserver) {
       return;
     }
+    // console.log('addToObserver 2', nameEl);
     const elForObserver: IObserverItems = {
       name: nameEl,
       el,
       added: false,
     };
+    // console.log('addToObserver', nameEl, elForObserver);
     observer.items.push(elForObserver);
+  };
+
+  // добавляем элемент в observer
+  const removeFromObserver = (nameObserver: string, nameEl: string, el: HTMLElement): void => {
+    const observer = observers.value.find((item) => item.name === nameObserver);
+    if (!observer) {
+      return;
+    }
+
+    observer.observer.unobserve(el);
+    observer.items = observer.items.filter((item) => item.name !== nameEl);
   };
 
   watch(
@@ -142,5 +151,6 @@ export const useObserver = function () {
     addToObserver,
     addResizeObserver,
     addToResizeObserver,
+    removeFromObserver,
   };
 };

@@ -1,7 +1,8 @@
 <template>
   <div class="player-layout-content">
     <div class="player-layout-content__main">
-      <EntityPlayer />
+      <!--      <EntityPlayer />-->
+      <EntityPlayerTwo />
     </div>
     <div class="player-layout-content__author">
       author content

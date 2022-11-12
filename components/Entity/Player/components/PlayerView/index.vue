@@ -1,9 +1,9 @@
 <template>
   <div
-    :ref="(el) =>addItemToObserve(el)"
+    ref="videoView"
     class="entity-player-view"
-    :style="{ order: props.index }"
-    :data-item="props.id"
+    :data-id="props.data.id"
+    :data-index="props.index"
   >
     <BaseButton
       v-show="showPlayBtn"
@@ -15,7 +15,7 @@
     <video
       ref="video"
       class="entity-player-view__img"
-      :src="videos[props.index].src"
+      :src="props.data.src"
       currentindex="0"
       loop
       playsinline
@@ -30,15 +30,14 @@
 import { useObserver, usePlayer } from '@/composables';
 
 const {
-  videos, fullShowId, showPlayBtn, toHidePlayBtn, toShowPlayBtn, startShowId,
+  fullShowId,
+  showPlayBtn,
+  toHidePlayBtn,
+  toShowPlayBtn,
+  fullShowIndex,
 } = usePlayer();
 
 const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
-
   index: {
     type: Number,
     required: true,
@@ -48,11 +47,16 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+
+  data: {
+    type: Object,
+    required: true,
+  },
 });
 
-watch(fullShowId, (nowFullShowId, beforeFullShowId) => {
-  if (nowFullShowId !== beforeFullShowId) {
-    if (nowFullShowId === props.id && !showPlayBtn.value) {
+watch(fullShowIndex, (nowFullShowIndex, beforeFullShowIndex) => {
+  if (nowFullShowIndex !== beforeFullShowIndex) {
+    if (nowFullShowIndex === props.id && !showPlayBtn.value) {
       toPlay();
     } else {
       toPause();
@@ -61,28 +65,34 @@ watch(fullShowId, (nowFullShowId, beforeFullShowId) => {
 });
 
 const video = ref(null);
-const wrapp = ref(null);
+const videoView = ref(null);
 
-const { addToObserver } = useObserver();
+const { addToObserver, removeFromObserver } = useObserver();
 const addItemToObserve = (el) => {
-  const itemName = `${props.id}-view`;
+  const itemName = `${props.data.id}-view`;
   addToObserver('observerStartFullShowing', itemName, el);
   addToObserver('observerStartShowing', itemName, el);
-  wrapp.value = el;
 };
 
 const toPlay = () => {
-  console.log('toPlay', props);
   try {
     video.value.play();
   } catch (er) {
-    console.log('can not play', er);
   }
 };
 const toPause = () => {
-  console.log('toPause');
   video.value.pause();
 };
+
+onMounted(() => {
+  console.log('onMounted view', props.index, props.data.id);
+  addItemToObserve(videoView.value);
+});
+onBeforeUnmount(() => {
+  console.log('onBeforeUnmount view', props.index, props.data.id);
+  const itemName = `${props.data.id}-view`;
+  removeFromObserver('observerStartFullShowing', itemName, videoView.value);
+});
 
 </script>
 

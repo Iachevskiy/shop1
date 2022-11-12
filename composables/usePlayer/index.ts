@@ -13,10 +13,8 @@ export const usePlayer = function () {
     showPlayBtn.value = true;
   };
   const fullShowId = useState('playerFullShowId', () => 0);
+  const fullShowIndex = useState('fullShowIndex', () => 0);
   const startShowId = useState('playerStartShowId', () => 1);
-  const view1Order = useState('playerView1_Order', () => 0);
-  const view2Order = useState('playerView2_Order', () => 1);
-  const view3Order = useState('playerView3_Order', () => 2);
 
   const videos = useState('playerVideos', () => ([
     {
@@ -335,49 +333,20 @@ export const usePlayer = function () {
 
   const nuxtApp = useNuxtApp();
 
-  const updateViewsOrder = (item) => {
-    console.log('fullShowId', item);
-    fullShowId.value = item;
-    const view1 = view1Order.value;
-    const view2 = view2Order.value;
-    const view3 = view3Order.value;
-
-    let nowIndex;
-    if (item === '1') nowIndex = view1;
-    if (item === '2') nowIndex = view2;
-    if (item === '3') nowIndex = view3;
-
-    const dataLength = videos.value.length - 1;
-
-    const topIndex = nowIndex - 1;
-    const topIndexValid = topIndex > -1;
-    const bottomIndex = nowIndex + 1;
-    const bottomIndexValid = bottomIndex <= dataLength;
-
-    if (item === '1') {
-      if (topIndexValid && view3 !== topIndex) view3Order.value = topIndex;
-      if (bottomIndexValid && view2 !== bottomIndex) view2Order.value = bottomIndex;
-    }
-    if (item === '2') {
-      if (topIndexValid && view1 !== topIndex) view1Order.value = topIndex;
-      if (bottomIndexValid && view3 !== bottomIndex) view3Order.value = bottomIndex;
-    }
-    if (item === '3') {
-      if (topIndexValid && view2 !== topIndex) view2Order.value = topIndex;
-      if (bottomIndexValid && view1 !== bottomIndex) view1Order.value = bottomIndex;
-    }
+  const updateViewsOrder = (index, id) => {
+    console.log('fullShowIndex', index, id);
+    fullShowIndex.value = index;
+    fullShowId.value = id;
   };
-
   const debouncedUpdateViewsOrder = debounce(updateViewsOrder, 180);
-
-  // only client
-  nuxtApp.hook('page:finish', () => {
-    // Observer Start Full Showing
+  // Observer Start Full Showing
+  const addObserverStartFullShow = () => {
     const handleObserverStartFullShowing = (entries) => {
       entries.forEach((entry) => {
-        const { item } = entry.target.dataset;
-        if (entry.isIntersecting && fullShowId.value !== item) {
-          debouncedUpdateViewsOrder(item);
+        const index = Number(entry.target.dataset.index);
+        const id = Number(entry.target.dataset.id);
+        if (entry.isIntersecting && fullShowId.value !== index) {
+          debouncedUpdateViewsOrder(index, id);
         }
       });
     };
@@ -386,21 +355,24 @@ export const usePlayer = function () {
       options: {
         root: null,
         rootMargin: '0px',
-        threshold: [0.9],
+        threshold: [0.99],
       },
       observer: null,
       handle: handleObserverStartFullShowing,
       items: [],
     };
     addObserver(observerStartFullShowing);
+  };
 
+  // only client
+  nuxtApp.hook('page:finish', () => {
     // Observer Start Showing
     const handleObserverStartShowing = (entries) => {
       entries.forEach((entry) => {
-        const { item } = entry.target.dataset;
+        const { index } = entry.target.dataset;
         if (entry.isIntersecting) {
-          console.log('start show', item);
-          startShowId.value = item;
+          // console.log('start show', index);
+          startShowId.value = index;
         }
       });
     };
@@ -421,12 +393,11 @@ export const usePlayer = function () {
   return {
     videos,
     fullShowId,
-    view1Order,
-    view2Order,
-    view3Order,
+    fullShowIndex,
     showPlayBtn,
     toHidePlayBtn,
     toShowPlayBtn,
     startShowId,
+    addObserverStartFullShow,
   };
 };
