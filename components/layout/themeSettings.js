@@ -11,7 +11,31 @@ const colorBtn = '#21201f';
 
 export default {
   common: {
+    borderRadius: '8px',
+    borderFocus: `1px solid ${SecondaryColor}`,
+    borderHover: `1px solid ${SecondaryColor}`,
+    boxShadowFocus: 'none',
+    caretColor: colorBtn,
 
+    borderPrimary: 'none',
+    borderHoverPrimary: 'none',
+    borderPressedPrimary: 'none',
+    borderFocusPrimary: 'none',
+    borderDisabledPrimary: 'none',
+    primaryColor,
+  },
+
+  Select: {
+    borderRadius: '8px',
+    borderFocus: `1px solid ${SecondaryColor}`,
+    borderHover: `1px solid ${SecondaryColor}`,
+    boxShadowFocus: 'none',
+    caretColor: colorBtn,
+    borderPrimary: 'none',
+    borderHoverPrimary: 'none',
+    borderPressedPrimary: 'none',
+    borderFocusPrimary: 'none',
+    borderDisabledPrimary: 'none',
   },
 
   Input: {
@@ -19,6 +43,8 @@ export default {
     borderFocus: `1px solid ${SecondaryColor}`,
     borderHover: `1px solid ${SecondaryColor}`,
     boxShadowFocus: 'none',
+    caretColor: colorBtn,
+
   },
 
   Button: {
@@ -33,7 +59,7 @@ export default {
 
     // Primary type-theme
     // background
-    colorPrimary: primaryColor,
+    // colorPrimary: primaryColor,
     colorHoverPrimary: primaryColorHover,
     colorPressedPrimary: primaryColorHover,
     colorFocusPrimary: primaryColorHover,

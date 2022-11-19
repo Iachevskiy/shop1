@@ -4,11 +4,11 @@
   display: grid;
   grid-gap: 16px;
   grid-template-areas:
-    "titleMain ."
-    "deliveryDetails priceDetails"
-    "titleUpsell ."
-    "upSell upSell";
-  grid-template-columns: 1fr 350px;
+    "titleMain"
+    "deliveryDetails"
+    "titleUpsell"
+    "upSell";
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto auto;
   overflow-y: scroll;
 
@@ -23,13 +23,9 @@
   }
 
   &__delivery-details {
-    min-height: 500px;
     grid-area: deliveryDetails;
   }
 
-  &__price-details {
-    grid-area: priceDetails;
-  }
 
   &__upSell {
     grid-area: upSell;

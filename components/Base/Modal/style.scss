@@ -1,0 +1,39 @@
+.modal {
+  &__wrapper {
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    min-width: 300px;
+
+    display: grid;
+    grid-template-areas:
+      "title title btnClose"
+      "content content content"
+      ". btnChancel btnSubmit";
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: auto minmax(100px, 1fr) auto;
+    grid-column-gap: 5px;
+  }
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__btn-close {
+    grid-area: btnClose;
+    align-self: end;
+    justify-self: end;
+  }
+
+  &__content {
+    grid-area: content;
+  }
+
+  &__btn-chancel {
+    grid-area: btnChancel;
+  }
+
+  &__btn-submit {
+    grid-area: btnSubmit;
+  }
+}

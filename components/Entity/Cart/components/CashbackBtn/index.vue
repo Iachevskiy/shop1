@@ -1,10 +1,10 @@
 <template>
-  <div class="entity-cart-btn-delivery">
-    <div class="entity-cart-btn-delivery__icon">
-      <BaseIcon name="Rocket" />
+  <div class="entity-cart-btn-cashback">
+    <div class="entity-cart-btn-cashback__icon">
+      <BaseIcon name="CardCredit" />
     </div>
-    <div class="entity-cart-btn-delivery__title">
-      Доставка
+    <div class="entity-cart-btn-cashback__title">
+      Баллы
     </div>
 
     <BaseModal

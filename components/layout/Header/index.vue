@@ -14,12 +14,21 @@
       class="default-layout-header__change-language"
     />
 
-    <BaseButton
-      title="Войти"
-      size="large"
-      theme="secondary"
-      class="default-layout-header__enter"
-    />
+    <BaseModal
+      title="Подробности"
+    >
+      <template #togler>
+        <BaseButton
+          title="Войти"
+          size="large"
+          theme="secondary"
+          class="default-layout-header__enter"
+        />
+      </template>
+      <template #content>
+        test
+      </template>
+    </BaseModal>
   </div>
 </template>
 

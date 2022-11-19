@@ -7,7 +7,6 @@
       btnBack
     />
     <OrderDetails class="entity-checkout__delivery-details" />
-    <PriceDetails class="entity-checkout__price-details" />
     <BaseTitle
       class="entity-checkout__title-upsell"
       title="Что-то еще?"
@@ -19,7 +18,6 @@
 
 <script setup>
 import OrderDetails from './components/OrderDetails';
-import PriceDetails from './components/PriceDetails';
 
 const router = useRouter();
 

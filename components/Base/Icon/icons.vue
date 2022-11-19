@@ -11,6 +11,8 @@
   <Add v-if="name === 'Add'" />
   <Remove v-if="name === 'Minus'" />
   <Play v-if="name === 'Play'" />
+  <CardOutline v-if="name === 'CardCredit'" />
+  <Close v-if="name === 'Close'" />
 </template>
 
 <script setup>
@@ -27,6 +29,8 @@ import {
   Add,
   Remove,
   Play,
+  CardOutline,
+  Close,
 } from '@vicons/ionicons5';
 
 defineProps({

@@ -7,6 +7,8 @@
 
     <!--  Кнопка Доставка  -->
     <DeliveryBtn />
+    <!--  Кнопка Доставка  -->
+    <CashbackBtn />
     <!--  Кнопка купить  -->
     <BuyBtn />
   </div>
@@ -15,6 +17,7 @@
 <script setup>
 
 import DeliveryBtn from './components/DeliveryBtn';
+import CashbackBtn from './components/CashbackBtn';
 import BuyBtn from './components/BuyBtn';
 import CartList from './components/CartList';
 
